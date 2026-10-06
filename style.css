@@ -1,0 +1,97 @@
+html {
+    box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background: linear-gradient(180deg, #0f1c3f 0%, #263a6b 100%);
+}
+
+.canvas {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    max-width: 720px;
+    height: 620px;
+    padding-bottom: 30px;
+}
+
+.trunk,
+.branch {
+    border-radius: 25px;
+    background: linear-gradient(to right, #7f3333, #4d2020);
+}
+
+.trunk {
+    position: relative;
+    width: 10px;
+    height: 500px;
+    margin: 0 auto;
+}
+
+.branch {
+    position: absolute;
+    width: 5px;
+    left: calc(50% - 2.5px);
+    transform-origin: bottom center;
+}
+
+.branch:nth-child(even) { transform: rotate(60deg); }
+.branch:nth-child(odd)  { transform: rotate(-60deg); }
+
+.branch:nth-child(1) { top: 180px; height: 180px; }
+.branch:nth-child(2) { top: 160px; height: 150px; }
+.branch:nth-child(3) { top: 120px; height: 150px; }
+.branch:nth-child(4) { top: 110px; height: 130px; }
+.branch:nth-child(5) { top:  85px; height: 120px; }
+.branch:nth-child(6) { top:  70px; height: 105px; }
+.branch:nth-child(7) { top:  45px; height:  95px; }
+.branch:nth-child(8) { top:  35px; height:  80px; }
+
+.leaf {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 75% 0 75% 0;
+    background: linear-gradient(to right, #c084fc, #7c3aed);
+}
+
+.leaf:nth-child(1) { top:  5px; animation-delay: 2.5s; }
+.leaf:nth-child(2) { top: 20px; animation-delay: 2s;   }
+.leaf:nth-child(3) { top: 50px; animation-delay: 1.5s; }
+
+.leaf:nth-child(odd) {
+    left: 100%;
+    transform-origin: 0% 100%;
+    animation-name: leaf-odd-grow;
+    animation-duration: 3s;
+    animation-fill-mode: both;
+}
+
+.leaf:nth-child(even) {
+    left: -150%;
+    transform-origin: 50% 100%;
+    animation-name: leaf-even-grow;
+    animation-duration: 3s;
+    animation-fill-mode: both;
+}
+
+@keyframes leaf-odd-grow {
+    0%   { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+@keyframes leaf-even-grow {
+    0%   { transform: rotate(-90deg) scale(0); }
+    100% { transform: rotate(-90deg) scale(1); }
+}
